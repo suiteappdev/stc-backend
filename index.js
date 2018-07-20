@@ -12,7 +12,7 @@ var options = {
 };*/
 
 //var https = require('https').Server(options, app);
-var http = require('http').Server({}, app);
+var http = require('http').Server(app);
 
 var mongoose = require("mongoose");
 var bodyParser = require('body-parser');
