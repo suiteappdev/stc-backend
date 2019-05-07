@@ -1,7 +1,7 @@
 var crypto = require('crypto');
 var base_path = process.env.PWD;
 
-var config = require(base_path + '/config.js');
+var config = require('../config.js');
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
