@@ -15,8 +15,8 @@ module.exports = function(app, apiRoutes){
         });
     }
 
-    app.get('/products', products);
-    app.get('/products/:category', byCategory);
+    apiRoutes.get('/api/products', products);
+    apiRoutes.get('/api/products/:category', byCategory);
 
     /*apiRoutes.get('/user/:id', user);
     app.get('/api/user/exists/:email', exists);
