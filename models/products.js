@@ -1,33 +1,21 @@
-module.exports = function(app, apiRoutes){
-    var mongoose = require('mongoose');
-    var config = require(process.env.PWD + '/config.js');
-    let model = require('./products');
+var crypto = require('crypto');
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
-    let products = (req, res)=>{
-        model.find({}).exec((err, data)=>{
-            res.status(200).json(data);
-        });
-    }
+// Load required packages
+var timestamps = require('mongoose-timestamp');
+var metadata = require('../models/plugins/metadata');
 
-    let byCategory = (req, res)=>{
-        model.find({ "data.categoria" : { "$in" : [req.params.category] } }).exec((err, data)=>{
-            res.status(200).json(data);
-        });
-    }
+var _Schema = new Schema({
+    data:{ type : Object}
+});
 
-    apiRoutes.get('/api/products', products);
-    apiRoutes.get('/api/products/:category', byCategory);
+_Schema.pre('save', function (next) {
+    next();
+});
 
-    /*apiRoutes.get('/user/:id', user);
-    app.get('/api/user/exists/:email', exists);
-    app.post('/api/user/activate', activate);
-    app.post('/api/reset/:token', reset);
-    app.post('/api/password-reset/', passwordReset);
-    app.post('/api/recover/', recover);
-    app.post("/api/user", create);
-    app.post("/api/login", login);
-    apiRoutes.put("/user/:id", update);
-    apiRoutes.delete("/user/:id", remove);*/
+//add plugins
+_Schema.plugin(metadata);
+_Schema.plugin(timestamps);
 
-    return this;
-}
+module.exports = mongoose.model('Producto', _Schema);

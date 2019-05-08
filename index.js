@@ -37,6 +37,11 @@ process.env.PWD = process.cwd() || process.env.PWD;
 apiRoutes = express.Router();
 
 apiRoutes.use(function(req, res, next) {
+        console.log(req.url);
+        if(req.url == ("/products")){
+            return next();
+        }
+
         var token = req.body.token || req.query.token || req.headers['x-stc-auth'];
         var facebook_token = req.body.access_token  || req.query.access_token  || req.headers['access-token'];
         
