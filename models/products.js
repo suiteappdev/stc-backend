@@ -1,7 +1,7 @@
 module.exports = function(app, apiRoutes){
     var mongoose = require('mongoose');
     var config = require(process.env.PWD + '/config.js');
-    let model = require('../models/productos');
+    let model = require('./products');
 
     let products = (req, res)=>{
         model.find({}).exec((err, data)=>{
@@ -15,9 +15,8 @@ module.exports = function(app, apiRoutes){
         });
     }
 
-
-    app.get('/api/products', products);
-    app.get('/api/products/:category', byCategory);
+    app.get('/products', products);
+    app.get('/products/:category', byCategory);
 
     /*apiRoutes.get('/user/:id', user);
     app.get('/api/user/exists/:email', exists);
