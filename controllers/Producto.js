@@ -30,8 +30,16 @@ module.exports = function(app, apiRoutes){
         });
     }
 
+    let byId = (req, res)=>{
+        model.find({ _id : mongoose.Types.ObjectId(req.params.id) }).exec((err, data)=>{
+            res.status(200).json(data);
+        });
+    }
+
+
     app.get('/api/products', products);
     app.get('/api/products/:category', byCategory);
+    app.get('/api/products/:id', byId);
     apiRoutes.post('/products', new_product);
 
     /*apiRoutes.get('/user/:id', user);
