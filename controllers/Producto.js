@@ -38,8 +38,8 @@ module.exports = function(app, apiRoutes){
 
 
     app.get('/api/products', products);
-    app.get('/api/products/:category', byCategory);
-    app.get('/api/products/by-category/:id', byId);
+    app.get('/api/products/by-category/:category', byCategory);
+    app.get('/api/products/:id', byId);
     apiRoutes.post('/products', new_product);
 
     /*apiRoutes.get('/user/:id', user);
