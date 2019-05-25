@@ -25,7 +25,7 @@ module.exports = function(app, apiRoutes){
     }
 
     let byCategory = (req, res)=>{
-        model.find({ "data.categoria" : { "$in" : [req.params.category] } }).exec((err, data)=>{
+        model.find({ "data.categoria" : { "$in" : [req.params.category.toString()] } }).exec((err, data)=>{
             res.status(200).json(data);
         });
     }
